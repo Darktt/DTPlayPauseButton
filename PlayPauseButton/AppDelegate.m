@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  PlayPauseButton
 //
-//  Created by EdenLi on 2015/11/13.
+//  Created by Darktt on 15/11/13.
 //  Copyright © 2015年 Darktt. All rights reserved.
 //
 

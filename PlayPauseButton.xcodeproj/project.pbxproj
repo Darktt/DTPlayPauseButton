@@ -13,6 +13,7 @@
 		525F68B91BF597BB0010B67B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525F68B71BF597BB0010B67B /* Main.storyboard */; };
 		525F68BB1BF597BB0010B67B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525F68BA1BF597BB0010B67B /* Assets.xcassets */; };
 		525F68BE1BF597BB0010B67B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525F68BC1BF597BB0010B67B /* LaunchScreen.storyboard */; };
+		525F68C71BF597DD0010B67B /* DTPlayPauseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 525F68C61BF597DD0010B67B /* DTPlayPauseButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		525F68BA1BF597BB0010B67B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		525F68BD1BF597BB0010B67B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		525F68BF1BF597BB0010B67B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		525F68C51BF597DD0010B67B /* DTPlayPauseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTPlayPauseButton.h; sourceTree = "<group>"; };
+		525F68C61BF597DD0010B67B /* DTPlayPauseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTPlayPauseButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		525F68AD1BF597BB0010B67B /* PlayPauseButton */ = {
 			isa = PBXGroup;
 			children = (
+				529F35FE1BFAC90500833AF4 /* DTPlayPauseButton */,
 				525F68B11BF597BB0010B67B /* AppDelegate.h */,
 				525F68B21BF597BB0010B67B /* AppDelegate.m */,
 				525F68B41BF597BB0010B67B /* ViewController.h */,
@@ -77,6 +81,16 @@
 				525F68AF1BF597BB0010B67B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		529F35FE1BFAC90500833AF4 /* DTPlayPauseButton */ = {
+			isa = PBXGroup;
+			children = (
+				525F68C51BF597DD0010B67B /* DTPlayPauseButton.h */,
+				525F68C61BF597DD0010B67B /* DTPlayPauseButton.m */,
+			);
+			name = DTPlayPauseButton;
+			path = ../DTPlayPauseButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +165,7 @@
 			files = (
 				525F68B61BF597BB0010B67B /* ViewController.m in Sources */,
 				525F68B31BF597BB0010B67B /* AppDelegate.m in Sources */,
+				525F68C71BF597DD0010B67B /* DTPlayPauseButton.m in Sources */,
 				525F68B01BF597BB0010B67B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				INFOPLIST_FILE = PlayPauseButton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darktt.PlayPauseButton;
@@ -272,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				INFOPLIST_FILE = PlayPauseButton/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.darktt.PlayPauseButton;
@@ -298,6 +315,7 @@
 				525F68C41BF597BB0010B67B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
