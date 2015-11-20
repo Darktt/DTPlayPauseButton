@@ -9,16 +9,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
+UIKIT_CLASS_AVAILABLE_IOS_WATCHOS_TVOS(7_0, 2_0, 9_0)
+
 /**
  *  Animating the transition the Playing and Pause state,
  *  Like the Youtube play/pause button.
  */
-NS_CLASS_AVAILABLE_IOS(7_0) @interface DTPlayPauseButton : UIControl
+@interface DTPlayPauseButton : UIControl
 
 /**
  *  A Boolean value that determines the playing/pause state of the state.
  */
 @property (assign, getter=isPlaying) IBInspectable BOOL playing;
+
+/**
+ *  The color tint the play pause indicator when focused (tvOS Only).
+ */
+@property (retain, nonatomic) UIColor *focusedTintColor __IOS_PROHIBITED __WATCHOS_PROHIBITED;
 
 /**
  *  Initals new DTPlayPauseButton instance.

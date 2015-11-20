@@ -56,6 +56,11 @@
     [super dealloc];
 }
 
+- (BOOL)canBecomeFocused
+{
+    return YES;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -219,6 +224,32 @@
     [self setNeedsLayout];
 }
 
+#pragma mark - Update Focus for tvOS
+
+- (void)didUpdateFocusInContext:(UIFocusUpdateContext *)context withAnimationCoordinator:(UIFocusAnimationCoordinator *)coordinator
+{
+    if (context.previouslyFocusedView == self) {
+        
+        void (^animations) (void) = ^{
+            CATransform3D transfrom = CATransform3DIdentity;
+            
+            [_shapeLayer setTransform:transfrom];
+        };
+        
+        [coordinator addCoordinatedAnimations:animations completion:nil];
+        
+        return;
+    }
+    
+    void (^animations) (void) = ^{
+        CATransform3D transfrom = CATransform3DMakeScale(1.5f, 1.5f, 1.5f);
+        
+        [_shapeLayer setTransform:transfrom];
+    };
+    
+    [coordinator addCoordinatedAnimations:animations completion:nil];
+}
+
 #pragma mark - Override Property -
 
 - (void)setPlaying:(BOOL)playing
@@ -278,6 +309,12 @@
 {
     [super beginTrackingWithTouch:touch withEvent:event];
     
+#ifdef TARGET_OS_TV
+    
+    return YES;
+    
+#else
+    
     CGPoint point = [touch locationInView:self];
     
     if (CGRectContainsPoint(self.bounds, point)) {
@@ -285,11 +322,15 @@
     }
     
     return self.enabled;
+    
+#endif
 }
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     [super endTrackingWithTouch:touch withEvent:event];
+    
+#ifndef TARGET_OS_TV
     
     CGPoint point = [touch locationInView:self];
     
@@ -300,13 +341,39 @@
     }
     
     [self setPlaying:!_playing animated:YES];
+    
+#endif
 }
 
 - (void)cancelTrackingWithEvent:(UIEvent *)event
 {
     [super cancelTrackingWithEvent:event];
     
+#ifndef TARGET_OS_TV
+    
     [self sendActionsForControlEvents:UIControlEventTouchCancel];
+    
+#endif
+}
+
+#pragma mark - Press Method -
+
+- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
+{
+    [super pressesBegan:presses withEvent:event];
+}
+
+- (void)pressesEnded:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event
+{
+    [super pressesEnded:presses withEvent:event];
+    
+    UIPress *press = [presses anyObject];
+    
+    if (press.type == UIPressTypePlayPause || press.type == UIPressTypeSelect) {
+        [self setPlaying:!_playing animated:YES];
+        
+        [self sendActionsForControlEvents:UIControlEventPrimaryActionTriggered];
+    }
 }
 
 #pragma mark - KVO Method -
